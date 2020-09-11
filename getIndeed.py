@@ -5,7 +5,7 @@ LIMIT = 50
 INDEED_URL = f"https://jp.indeed.com/%E6%B1%82%E4%BA%BA?q=python&rbl=%E6%9D%B1%E4%BA%AC%E9%83%BD&jlid=b3e7700c5442df94&jt=fulltime&limit={LIMIT}"
 
 
-def extract_indeed_pages():
+def get_last_pages():
     result = requests.get(INDEED_URL)
     soup = BeautifulSoup(result.text, "html.parser")
 
@@ -40,7 +40,7 @@ def extract_job(html):
     }
 
 
-def extract_indeed_jobs(last_page):
+def extract_jobs(last_page):
     jobs = []
     for page in range(last_page):
         result = requests.get(f"{INDEED_URL}&start={page*LIMIT}")
@@ -50,3 +50,8 @@ def extract_indeed_jobs(last_page):
             job = extract_job(result)
             jobs.append(job)
         return jobs
+
+def get_jobs():
+  last_page = get_last_pages()
+  jobs = extract_jobs(last_page)
+  return jobs
