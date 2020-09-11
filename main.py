@@ -1,6 +1,6 @@
-from getIndeed import extract_indeed_pages, extract_indeed_jobs
+from getIndeed import get_jobs as get_indeed_jobs
+from getSof import get_jobs as get_sof_jobs
 
-max_indeed_pages = extract_indeed_pages()
 
-indeed_jobs = extract_indeed_jobs(max_indeed_pages)
-print(indeed_jobs)
+#indeed_job = get_indeed_jobs()
+sof_job = get_sof_jobs()
